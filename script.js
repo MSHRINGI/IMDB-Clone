@@ -18,12 +18,12 @@ function suggestions(data){
     let xhrSearchRequest = new XMLHttpRequest();
     xhrSearchRequest.onload = function(){
         responseData = JSON.parse(xhrSearchRequest.response);
-        responseData = responseData.Search;
+        responseDataForSearch = responseData.Search
         console.log("From suggestions" ,responseData);
-        for(let i=0; i<responseData.length; i++){
-            if(!responseData.Error){
+        if(!responseData.Error){
+            for(let i=0; i<responseDataForSearch.length; i++){
                 let createLi = document.createElement('li');
-                createLi.innerText = responseData[i].Title;
+                createLi.innerText = responseDataForSearch[i].Title;
                 uo_List.appendChild(createLi);
                 createLi.addEventListener('click', function(){
                     document.getElementById('inputText').value = this.innerText;
