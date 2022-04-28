@@ -152,7 +152,7 @@ function fetch_movies_list(data){
 // for sending the data of input tag to the API
 let input_text = document.getElementById('inputText');
 console.log(input_text, "ByElement");
-input_text.addEventListener('input', function(event){
+input_text.addEventListener('keyup', function(event){
     console.log("event", event);
     if(event.key == 'Enter'){
         fetch_movies_list(input_text.value);
