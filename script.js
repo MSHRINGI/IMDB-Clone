@@ -18,18 +18,21 @@ function suggestions(data){
     let xhrSearchRequest = new XMLHttpRequest();
     xhrSearchRequest.onload = function(){
         responseData = JSON.parse(xhrSearchRequest.response);
+        responseData = responseData.Search;
         console.log("From suggestions" ,responseData);
-        if(!responseData.Error){
-            let createLi = document.createElement('li');
-            createLi.innerText = responseData.Title;
-            uo_List.appendChild(createLi);
-            createLi.addEventListener('click', function(){
-                document.getElementById('inputText').value = this.innerText;
-                fetch_movies_list(this.innerText);
-            })
+        for(let i=0; i<responseData.Search.length; i++){
+            if(!responseData.Error){
+                let createLi = document.createElement('li');
+                createLi.innerText = responseData[i].Title;
+                uo_List.appendChild(createLi);
+                createLi.addEventListener('click', function(){
+                    document.getElementById('inputText').value = this.innerText;
+                    fetch_movies_list(this.innerText);
+                })
+            }
         }
     }
-    xhrSearchRequest.open('get', `https://www.omdbapi.com/?t=${data}&apikey=4dd18108`, true);
+    xhrSearchRequest.open('get', `https://www.omdbapi.com/?s=${data}&apikey=4dd18108`, true);
     xhrSearchRequest.send();
 }
 
