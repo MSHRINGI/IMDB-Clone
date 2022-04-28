@@ -20,7 +20,7 @@ function suggestions(data){
         responseData = JSON.parse(xhrSearchRequest.response);
         responseData = responseData.Search;
         console.log("From suggestions" ,responseData);
-        for(let i=0; i<responseData.Search.length; i++){
+        for(let i=0; i<responseData.length; i++){
             if(!responseData.Error){
                 let createLi = document.createElement('li');
                 createLi.innerText = responseData[i].Title;
